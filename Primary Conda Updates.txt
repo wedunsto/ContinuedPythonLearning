@@ -1,0 +1,4 @@
+conda update --prefix C:\Users\wdunston\Anaconda3 anaconda
+conda update --all
+conda update spyder
+conda update jupyter
