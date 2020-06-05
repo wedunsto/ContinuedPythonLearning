@@ -44,3 +44,13 @@ print("Truncation Example:","\n",TruncateDataFrameData,"\n\n")
 TruncateDataFrameData.sort_values("Number", axis = 0, ascending = True, inplace = True) #Sort DataFrame by the player number in ascending order
 print("Sorting Example: \n",TruncateDataFrameData,"\n\n")
 
+GroupTeams = DataFrameData.groupby("Team") #Group DataFrame by Teams
+GroupTeamsSum = GroupTeams.sum() #Sums up numerical values in the groups
+print("Summed Up Group Values \n",GroupTeamsSum,"\n\n")
+
+GroupTeamsAndNumber = DataFrameData.groupby(["Team","Number"]) #Group DataFrame by Teams and Numbers
+
+print("Group Loop Example:")
+for teams, group in GroupTeams: #Loop through all the team groups
+    print(teams) #Loop teams
+    print(group) #Loop group values
