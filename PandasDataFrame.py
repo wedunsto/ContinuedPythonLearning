@@ -1,6 +1,7 @@
 #Objective: Dive deeper into Pandas DataFrame
 
 import pandas as pd #Import needed to work with Pandas
+import numpy as np #Import needed to work with Numpy
 
 DataFrameData = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv") #Create Pandas DataFrame from a URL
 FirstTenRows = DataFrameData.head(10) #Stores first 10 rows
@@ -55,4 +56,28 @@ for teams, group in GroupTeams: #Loop through all the team groups
     
 print("Group Select Example (3x3 for space): ")
 BrooklynNets = GroupTeams.get_group("Brooklyn Nets").iloc[:3,:3] #Grabs the first 3 entries in the Brooklyn Nets group
-print(BrooklynNets)
+print(BrooklynNets,"\n\n")
+
+print("Aggregated Sum Example: ")
+GroupTeamsSum = GroupTeams.aggregate(np.sum) #For each Team in the group, sums up all the numbers per column
+print(GroupTeamsSum,"\n\n")
+
+print("Multiple Aggregated Example: ")
+AggregationOperations = [np.sum,np.mean] #Create a list of aggregation operations
+GroupTeamsSumMean = GroupTeams.aggregate(AggregationOperations)["Number"] #For each Team in the the group, sums up values and finds the mean of the Numbers
+print(GroupTeamsSumMean,"\n\n")
+
+print("Unique Aggregated Example: ")
+AggregationOperationsUnique = {"Number":"sum", "Salary":"mean"} #Dictionary of specified columns and functions
+SumNumberMeanSalary = GroupTeams.aggregate(AggregationOperationsUnique) #Finds the sum of the Numbers column and the mean of the Salary column
+print(SumNumberMeanSalary,"\n\n")
+
+print("Tranformation Max - Min Example: ")
+MaxMin = lambda x: x+1
+#TransMaxMin = GroupTeams.transform(MaxMin) Doesnt work mismatch by 1
+#print(TransMaxMin)
+
+print("Filtration Example")
+LessThan = lambda x : len(x) < 15
+#FilterMaxMin = GroupTeams.filter(LessThan)
+#print(FilterMaxMin) does work completely ignores grouping
