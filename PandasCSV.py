@@ -14,6 +14,7 @@ print(BoardsSeries,"\n\n")
 Newdf = pd.read_csv("Sports.csv",index_col="Brand",skiprows=[1]) #Saves the csv file as a Dataframe, skipping the second row
 print(Newdf,"\n\n")
 
-EditedDF = df["Event"] = ["Super pipe", "Half pipe"] #Create a new DataFrame with a new column
-print(EditedDF,"\n\n")
+df["Event"] = ["Super pipe", "Half pipe"] #Create a new DataFrame with a new column
+EditedDF = df
+print(type(EditedDF),"\n\n")
 EditedDF.to_csv('./EditedSports.csv') #Save the edited DataFrame to a new .CSV file
