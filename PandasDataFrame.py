@@ -19,6 +19,7 @@ SummaryData = DataFrameData.describe(); #Stores a analytical DataFrame
 print(SummaryData,"\n\n")
 
 States = ['CA','WA','MA','NC'] #Stores the values for the new column
+
 FirstFourCols["States"] = States #Creates a new column with the column values
 print("Add Column Example:","\n",FirstFourCols,"\n\n")
 
@@ -48,7 +49,7 @@ GroupTeamsSum = GroupTeams.sum() #Sums up numerical values in the groups
 print("Summed Up Group Values \n",GroupTeamsSum,"\n\n")
 
 GroupTeamsAndNumber = DataFrameData.groupby(["Team","Number"]) #Group DataFrame by Teams and Numbers
-
+print('------------------------------------',type(GroupTeams))
 print("Group Loop Example (3x3 for space): ")
 for teams, group in GroupTeams: #Loop through all the team groups
     print(teams) #Loop teams (string)
@@ -72,12 +73,12 @@ AggregationOperationsUnique = {"Number":"sum", "Salary":"mean"} #Dictionary of s
 SumNumberMeanSalary = GroupTeams.aggregate(AggregationOperationsUnique) #Finds the sum of the Numbers column and the mean of the Salary column
 print(SumNumberMeanSalary,"\n\n")
 
-print("Tranformation Max - Min Example: ")
-MaxMin = lambda x: x+1
+#print("Tranformation Max - Min Example: ")
+#MaxMin = lambda x: x+1
 #TransMaxMin = GroupTeams.transform(MaxMin) Doesnt work mismatch by 1
 #print(TransMaxMin)
 
-print("Filtration Example")
-LessThan = lambda x : len(x) < 15
+#print("Filtration Example")
+#LessThan = lambda x : len(x) < 15
 #FilterMaxMin = GroupTeams.filter(LessThan)
 #print(FilterMaxMin) does work completely ignores grouping
